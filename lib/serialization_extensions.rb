@@ -8,11 +8,15 @@ module SerializationExtensions
       self.excluded_from_serialization = []
       
       # Class-specific serialization options
-      cattr_accessor :serialization_options
+      cattr_accessor :serialization_options, :instance_writer => false
       self.serialization_options = {}
       
-      # Instance-specific serialization options
-      attr_accessor :serialization_options
+      def serialize_with(options)
+        @serialization_options = options
+        self
+      end
+      
+      attr_reader :serialization_options
       
       extend ClassMethods
     end

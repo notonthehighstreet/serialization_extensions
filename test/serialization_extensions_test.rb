@@ -42,11 +42,11 @@ class SerializationExtensionsTest < Test::Unit::TestCase
   end
   
   def test_serialization_options_on_instance
-    people(:jonathan).serialization_options = { :except => :name }
+    people(:jonathan).serialize_with(:except => :name)
     assert_nil jonathan_json["name"]
     assert_equal people(:jonathan).country, jonathan_json["country"]
     
-    people(:jonathan).serialization_options = { :only => :name }
+    people(:jonathan).serialize_with(:only => :name)
     assert_equal people(:jonathan).name, jonathan_json["name"]
     assert_nil jonathan_json["country"]
   end

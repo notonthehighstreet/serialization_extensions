@@ -23,4 +23,3 @@ class Test::Unit::TestCase #:nodoc:
 end
 
 ActiveSupport::Dependencies.load_paths.insert(0, Test::Unit::TestCase.fixture_path)
-
