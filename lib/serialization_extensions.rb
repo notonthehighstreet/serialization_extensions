@@ -70,12 +70,12 @@ module ActiveRecord #:nodoc:
     class Serializer
       def prepare_serialization_options
         options = @record.class.serialization_options.dup
-        options.update(@record.serialization_options) if @record.serialization_options
         options.update(@options)
+        options.update(@record.serialization_options) if @record.serialization_options
         
         options[:items] = Array(options[:items]) if options[:items]
         options[:only] = Array(options[:only]) if options[:only]
-        options[:except] = Array(options[:except]) if options[:only]
+        options[:except] = Array(options[:except]) if options[:except]
         
         if excluded_attributes = @record.excluded_from_serialization
           options[:except] = Array(options[:except]).concat(excluded_attributes)
