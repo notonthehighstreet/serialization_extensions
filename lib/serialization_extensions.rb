@@ -1,3 +1,5 @@
+require "serialization_extensions/item"
+
 module SerializationExtensions
   def self.included(base)
     base.class_eval do
