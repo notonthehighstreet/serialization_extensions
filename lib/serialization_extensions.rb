@@ -27,6 +27,9 @@ module SerializationExtensions
       end
     end
 
+    # Clear the serialization options since they should not be persisted for the same object
+    @serialization_options = nil
+
     options[:except] = Array.wrap(options[:except]) + self.class.excluded_from_serialization
 
     result = serializable_hash_without_extensions(options)
@@ -89,12 +92,12 @@ module SerializationExtensions
       end
     end
 
-    def included?(serialization_options)
+    def included?(options)
       case
-      when serialization_options[:except] && serialization_options[:except].include?(key)
+      when options[:except] && options[:except].include?(key)
         false
 
-      when serialization_options[:only] && !serialization_options[:only].include?(key)
+      when options[:only] && !options[:only].include?(key)
         false
 
       else
