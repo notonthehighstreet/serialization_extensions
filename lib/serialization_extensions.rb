@@ -10,7 +10,8 @@ module SerializationExtensions
 
     attr_reader :serialization_options
 
-    alias_method_chain :serializable_hash, :extensions
+    alias_method :serializable_hash_without_extensions, :serializable_hash
+    alias_method :serializable_hash, :serializable_hash_with_extensions
   end
 
   def serialize_with(options)
